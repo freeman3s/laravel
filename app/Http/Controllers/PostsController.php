@@ -17,10 +17,6 @@ class PostsController extends Controller
 	{
 		$posts = $posts->all();
 
-		// $posts = Post::latest()
-		// 	->filter(request(['month', 'year']))
-		// 	->get();
-
 		return view('posts.index', compact('posts'));
 	}
 
@@ -44,6 +40,8 @@ class PostsController extends Controller
 		auth()->user()->publish(
 			new Post(request(['title', 'body']))
 		);
+
+		session()->flash('message', 'Your post has now been published.');
 
 		return redirect('/');
 	}
