@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Post;
+use App\Tag;
+use Illuminate\Http\Request;
 use App\Repositories\Posts;
 
 class PostsController extends Controller
@@ -13,10 +14,12 @@ class PostsController extends Controller
 		$this->middleware('auth')->except(['index', 'show']);
 	}
 
-	public function index(Posts $posts)
+	public function index(Posts $posts, Tag $tag = null)
 	{
-		$posts = $posts->all();
+		return $tag;
 
+		$posts = $posts->all();
+	
 		return view('posts.index', compact('posts'));
 	}
 
