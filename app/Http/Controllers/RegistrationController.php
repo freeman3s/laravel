@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Mail\Welcome;
 
 class RegistrationController extends Controller
 {
@@ -19,7 +20,6 @@ class RegistrationController extends Controller
 			'password' => 'required|confirmed'
 		]);
 
-		// $user = User::create(request(['name', 'email', 'password']));
 		$user = User::create([ 
 			'name' => request('name'),
 			'email' => request('email'),
@@ -27,6 +27,8 @@ class RegistrationController extends Controller
 		]);
 
 		auth()->login($user);
+
+		\Mail::to($user)->send(new Welcome($user));
 
 		return redirect()->home();
 	}

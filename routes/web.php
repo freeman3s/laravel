@@ -1,4 +1,6 @@
 <?php
+// dd(resolve('App\Billing\Stripe'));
+
 Route::get('/about', function () {
 	return view('about');
 });
