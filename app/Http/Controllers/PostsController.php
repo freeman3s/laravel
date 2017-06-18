@@ -16,8 +16,6 @@ class PostsController extends Controller
 
 	public function index(Posts $posts, Tag $tag = null)
 	{
-		return $tag;
-
 		$posts = $posts->all();
 	
 		return view('posts.index', compact('posts'));

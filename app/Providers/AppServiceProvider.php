@@ -19,8 +19,9 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('layouts.sidebar', function ($view) {
         	$archives = \App\Post::archives();
         	$tags = \App\Tag::has('posts')->pluck('name');
+        	$most_commented = \App\Post::mostCommented();
 
-        	$view->with(compact('archives', 'tags'));
+        	$view->with(compact('archives', 'tags', 'most_commented'));
         });
     }
 

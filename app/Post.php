@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use DB;
 
 class Post extends Model
 {
@@ -46,6 +47,18 @@ class Post extends Model
 			->orderByRaw('min(created_at) desc')
 			->get()
 			->toArray();
+	}
+
+	public static function mostCommented()
+	{			
+		return	DB::table('posts')
+	        ->join('comments', 'posts.id', '=', 'comments.post_id')
+	        ->select('posts.id as id', 'posts.title as title', DB::raw('count(comments.id) as comments'))
+	        ->groupBy('id', 'title')
+	        ->orderByRaw('comments desc')
+	        ->limit(10)
+	        ->get()
+	        ->toArray(); 
 	}
 
 	public function tags()
