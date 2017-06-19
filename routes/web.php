@@ -24,6 +24,7 @@ Route::post('/login', 'SessionsController@store');
 Route::get('/logout', 'SessionsController@destroy');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
+	// CRUD for Posts.
 	Route::get('/posts', [
 		'as'   => 'admin-posts',
         'uses' => 'Admin\PostsController@index',
@@ -43,5 +44,23 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
 	Route::get('/posts/{post}/delete', [
 		'as'   => 'admin-posts-delete',
         'uses' => 'Admin\PostsController@delete',
+	]);
+
+	// CRUD for Comments.
+	Route::get('/comments', [
+		'as'   => 'admin-comments',
+        'uses' => 'Admin\CommentsController@index',
+	]);
+	Route::get('/comments/{comment}/edit', [
+		'as'   => 'admin-comments-edit',
+        'uses' => 'Admin\CommentsController@edit',
+	]);
+	Route::post('/comments/{comment}/store', [
+		'as'   => 'admin-comments-store',
+        'uses' => 'Admin\CommentsController@store',
+	]);
+	Route::get('/comments/{comment}/delete', [
+		'as'   => 'admin-comments-delete',
+        'uses' => 'Admin\CommentsController@delete',
 	]);
 });

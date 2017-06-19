@@ -11,6 +11,7 @@
 					<div class="dropdown-menu" aria-labelledby="dropdown04">
 					@if (Auth::user()->isAdmin())
 						<a class="dropdown-item" href="/admin/posts">Posts</a>
+						<a class="dropdown-item" href="/admin/comments">Comments</a>
 					@else
 						<a class="dropdown-item" href="/posts/create">Add Post</a>
 					@endif
