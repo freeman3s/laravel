@@ -12,10 +12,19 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Role::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name,
+    ];
+});
+
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
+    	'role_id' => function () {
+        	return factory(App\Role::class)->create()->id;
+        },
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),

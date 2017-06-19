@@ -2,12 +2,11 @@
 
 namespace App\Http\Requests;
 
-use App\User;
-use App\Mail\Welcome;
+use App\Post;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Foundation\Http\FormRequest;
 
-class RegistrationForm extends FormRequest
+class PostUpdateForm extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,23 +26,16 @@ class RegistrationForm extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-			'email' => 'required|email',
-			'password' => 'required|confirmed'
+            'title' => 'required',
+			'body' => 'required'
         ];
     }
 
-    public function persist()
+    public function update($post)
     {
-    	$user = User::create([
-    		'role_id' => 0,
-			'name' => request('name'),
-			'email' => request('email'),
-			'password' => bcrypt(request('password'))
-		]);
-
-		auth()->login($user);
-
-		Mail::to($user)->send(new Welcome($user));
+		$post = Post::find($post->id);
+		$post->title = request('title');
+		$post->body = request('body');
+		$post->save();
     }
 }

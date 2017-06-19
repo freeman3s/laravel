@@ -9,7 +9,11 @@
 				<li class="nav-item dropdown ml-auto">
 					<a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}</a>
 					<div class="dropdown-menu" aria-labelledby="dropdown04">
+					@if (Auth::user()->isAdmin())
+						<a class="dropdown-item" href="/admin/posts">Posts</a>
+					@else
 						<a class="dropdown-item" href="/posts/create">Add Post</a>
+					@endif
 						<a class="dropdown-item" href="/logout">Logout</a>
 						<a class="dropdown-item" href="#">Action</a>
 						<a class="dropdown-item" href="#">Another action</a>

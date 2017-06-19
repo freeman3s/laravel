@@ -4,6 +4,8 @@ namespace App\Repositories;
 
 use App\Post;
 use App\Redis;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class Posts
 {

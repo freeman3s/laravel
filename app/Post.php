@@ -8,7 +8,7 @@ use DB;
 
 class Post extends Model
 {
-    protected $fillable = ['user_id', 'title', 'body'];
+    protected $guarded = [];
 
     public function comments()
     {
