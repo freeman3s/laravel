@@ -63,4 +63,30 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
 		'as'   => 'admin-comments-delete',
         'uses' => 'Admin\CommentsController@delete',
 	]);
+
+	// CRUD for Tags.
+	Route::get('/tags', [
+		'as'   => 'admin-tags',
+        'uses' => 'Admin\TagsController@index',
+	]);
+	Route::get('/tags/create', [
+        'as'   => 'admin-tags-create',
+        'uses' => 'Admin\TagsController@create',
+    ]);
+	Route::get('/tags/{tag}/edit', [
+		'as'   => 'admin-tags-edit',
+        'uses' => 'Admin\TagsController@edit',
+	]);
+	Route::post('/tags/{tag}/update', [
+		'as'   => 'admin-tags-update',
+        'uses' => 'Admin\TagsController@update',
+	]);
+	Route::post('/tags', [
+		'as'   => 'admin-tags-store',
+        'uses' => 'Admin\TagsController@store',
+	]);
+	Route::get('/tags/{tag}/delete', [
+		'as'   => 'admin-tags-delete',
+        'uses' => 'Admin\TagsController@delete',
+	]);
 });
