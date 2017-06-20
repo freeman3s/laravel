@@ -18,16 +18,19 @@
 					<tr>
 						<th>{{ $post->id }}</th>
 						<td scope="row">
-							<a href="/posts/{{ $post->id }}">
+							<a href="/posts/{{ $post->slug }}">
 								{{ $post->title }}
 							</a>
+						</td>
+						<td>
+							<img src="{{ asset('images/' . $post->image) }}" height="100" width="100" alt="image" />
 						</td>
 						<td>{{ $post->body }}</td>
 						<td>{{ $post->created_at->toFormattedDateString() }}</td>
 						<td>
-							<a href="/posts/{{ $post->id }}" class="brown-text">View</a>
-							<a href="/admin/posts/{{ $post->id }}/edit" class="brown-text">Edit</a>
-							<a href="/admin/posts/{{ $post->id }}/delete" class="brown-text">Delete</a>
+							<a href="/posts/{{ $post->slug }}" class="brown-text">View</a>
+							<a href="/admin/posts/{{ $post->slug }}/edit" class="brown-text">Edit</a>
+							<a href="/admin/posts/{{ $post->slug }}/delete" class="brown-text">Delete</a>
 						</td>
 					</tr>
 				@endforeach

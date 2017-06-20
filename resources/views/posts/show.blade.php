@@ -4,6 +4,9 @@
 	<div class="col-sm-8 blog-main">
 		<h1>{{ $post->title }}</h1>
 
+		<img src="{{ asset('images/' . $post->image) }}" height="400" width="700" alt="image" />
+
+
 		@if (count($post->tags))
 			<ul>
 				@foreach ($post->tags as $tag)
@@ -37,7 +40,7 @@
 
 		<div class="card">
 			<div class="card-block">
-				<form method="POST" action="/posts/{{ $post->id }}/comments">
+				<form method="POST" action="/posts/{{ $post->slug }}/comments">
 					{{ csrf_field() }}
 
 					<div class="form-group">

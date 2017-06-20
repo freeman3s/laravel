@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Post;
+use Image;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -27,14 +28,25 @@ class PostUpdateForm extends FormRequest
     {
         return [
             'title' => 'required',
+            'slug' => 'required',
 			'body' => 'required'
         ];
     }
 
     public function update($post)
     {
-		$post = Post::find($post->id);
+    	$post = Post::find($post->id);
 		$post->title = request('title');
+		
+		if (request()->hasFile('image')) {
+			$image = request()->file('image');
+			$filename = time() . '.' . $image->getClientOriginalExtension();
+			$location = public_path('images/' . $filename);
+			Image::make($image)->resize(800, 400)->save($location);
+			$post->image = $filename;
+		}
+
+		$post->slug = request('slug');
 		$post->body = request('body');
 		$post->save();
     }

@@ -35,12 +35,24 @@ class PostsController extends Controller
 	{
 		$this->validate(request(), [
 			'title' => 'required',
+			'slug' => 'required',
 			'body' => 'required'
 		]);
 
-		auth()->user()->publish(
-			new Post(request(['title', 'body']))
-		);
+		if (request()->hasFile('image')) {
+			$image = request()->file('image');
+			$filename = time() . '.' . $image->getClientOriginalExtension();
+			$location = public_path('images/' . $filename);
+			\Image::make($image)->resize(800, 400)->save($location);
+		}
+
+		Post::create([
+			'user_id' => auth()->id(),
+			'title' => request('title'),
+			'image' => $filename,
+			'slug' => request('slug'),
+			'body' => request('body')
+		]);
 
 		session()->flash('message', 'Your post has now been published.');
 

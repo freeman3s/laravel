@@ -4,7 +4,7 @@
 	<div class="col-sm-8 blog-main">
 		<h1>Publish a Post</h1>
 		<hr>
-		<form method="POST" action="/posts">
+		<form method="POST" action="/posts" enctype="multipart/form-data">
 			{{ csrf_field() }}
 
 			<div class="form-group">
@@ -13,8 +13,18 @@
 			</div>
 
 			<div class="form-group">
+				<label for="slug">Slug</label>
+				<input type="text" class="form-control" id="slug" name="slug" required>
+			</div>
+
+			<div class="form-group">
 				<label for="body">Body</label>
 				<textarea id="body" name="body" class="form-control" required></textarea>
+			</div>
+
+			<div class="form-group">
+				<label for="image">Image</label>
+				<input type="file" name="image">
 			</div>
 
 			<div class="form-group">

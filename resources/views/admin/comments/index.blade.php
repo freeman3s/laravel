@@ -16,13 +16,13 @@
 					<tr>
 						<th>{{ $comment->id }}</th>
 						<td scope="row">
-							<a href="/posts/{{ $comment->post_id }}">
+							<a href="/posts/{{ \App\Post::find($comment->post_id)->slug }}"> 
 								{{ $comment->body }}
 							</a>
 						</td>
 						<td>{{ $comment->created_at->toFormattedDateString() }}</td>
 						<td>
-							<a href="/posts/{{ $comment->post_id }}" class="brown-text">View</a>
+							<a href="/posts/{{ \App\Post::find($comment->post_id)->slug }}" class="brown-text">View</a>
 							<a href="/admin/comments/{{ $comment->id }}/edit" class="brown-text">Edit</a>
 							<a href="/admin/comments/{{ $comment->id }}/delete" class="brown-text">Delete</a>
 						</td>
