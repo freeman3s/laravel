@@ -49,5 +49,6 @@ class PostUpdateForm extends FormRequest
 		$post->slug = request('slug');
 		$post->body = request('body');
 		$post->save();
+		$post->tags()->sync(request('tags'), true);
     }
 }

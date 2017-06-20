@@ -4,8 +4,7 @@
 	<div class="col-sm-8 blog-main">
 		<h1>{{ $post->title }}</h1>
 
-		<img src="{{ asset('images/' . $post->image) }}" height="400" width="700" alt="image" />
-
+		<hr>
 
 		@if (count($post->tags))
 			<ul>
@@ -18,6 +17,8 @@
 				@endforeach
 			</ul>
 		@endif
+
+		<img src="{{ asset('images/' . $post->image) }}" height="400" width="700" alt="image" />
 
 		{{ $post->body }}
 		<hr>

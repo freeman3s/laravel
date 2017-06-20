@@ -28,7 +28,8 @@ class PostsController extends Controller
 
 	public function create()
 	{
-		return view('posts.create');
+		$tags = Tag::all();
+		return view('posts.create', compact('tags'));
 	}
 
 	public function store()
@@ -46,13 +47,15 @@ class PostsController extends Controller
 			\Image::make($image)->resize(800, 400)->save($location);
 		}
 
-		Post::create([
+		$post = Post::create([
 			'user_id' => auth()->id(),
 			'title' => request('title'),
 			'image' => $filename,
 			'slug' => request('slug'),
 			'body' => request('body')
 		]);
+
+		$post->tags()->sync(request('tags'), false);
 
 		session()->flash('message', 'Your post has now been published.');
 
