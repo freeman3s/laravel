@@ -24,6 +24,36 @@ Route::post('/login', 'SessionsController@store');
 Route::get('/logout', 'SessionsController@destroy');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
+	// CRUD for Users.
+	Route::get('/users', [
+		'as'   => 'admin-users',
+        'uses' => 'Admin\UsersController@index',
+	]);
+	Route::get('/users/create', [
+        'as'   => 'admin-users-create',
+        'uses' => 'Admin\UsersController@create',
+    ]);
+	Route::get('/users/{user}', [
+		'as'   => 'admin-users-show',
+        'uses' => 'Admin\UsersController@show',
+	]);
+	Route::post('/users/store', [
+		'as'   => 'admin-users-store',
+        'uses' => 'Admin\UsersController@store',
+	]);
+    Route::get('/users/{user}/edit', [
+		'as'   => 'admin-users-edit',
+        'uses' => 'Admin\UsersController@edit',
+	]);
+	Route::post('/users/{user}/update', [
+		'as'   => 'admin-users-update',
+        'uses' => 'Admin\UsersController@update',
+	]);
+	Route::get('/users/{user}/delete', [
+		'as'   => 'admin-users-delete',
+        'uses' => 'Admin\UsersController@delete',
+	]);
+
 	// CRUD for Posts.
 	Route::get('/posts', [
 		'as'   => 'admin-posts',

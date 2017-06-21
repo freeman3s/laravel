@@ -10,6 +10,7 @@
 					<a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}</a>
 					<div class="dropdown-menu" aria-labelledby="dropdown04">
 					@if (Auth::user()->isAdmin())
+						<a class="dropdown-item" href="/admin/users">Users</a>
 						<a class="dropdown-item" href="/admin/posts">Posts</a>
 						<a class="dropdown-item" href="/admin/comments">Comments</a>
 						<a class="dropdown-item" href="/admin/tags">Tags</a>

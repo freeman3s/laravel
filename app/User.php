@@ -47,4 +47,9 @@ class User extends Authenticatable
 	{
 		return $this->role_id;
 	}
+
+	public function getRouteKeyName()
+	{
+		return 'name';
+	}
 }
