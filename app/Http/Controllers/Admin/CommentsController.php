@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 
 class CommentsController extends Controller
 {
-	public function index(Comment $comments)
+	public function index(Comments $comments)
 	{
 		$comments = $comments->all();
 

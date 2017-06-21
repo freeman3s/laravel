@@ -17,7 +17,7 @@
 					<tr>
 						<th>{{ $tag->id }}</th>
 						<td scope="row">
-							<a href="/post/tags/{{ $tag->name }}">
+							<a href="/posts/tags/{{ $tag->name }}">
 								{{ $tag->name }}
 							</a>
 						</td>
@@ -30,5 +30,9 @@
 				@endforeach
 			</tbody>
 		</table>
+
+		<nav class="blog-pagination">
+			{{ $tags->links() }}
+		</nav>
 	</div>
 @endsection

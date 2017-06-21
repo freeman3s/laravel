@@ -8,6 +8,6 @@ class Comments
 {
 	public function all()
 	{
-		return Comment::latest()->get();
+		return Comment::latest()->paginate(10);
 	}
 }

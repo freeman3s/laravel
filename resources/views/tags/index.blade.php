@@ -5,9 +5,5 @@
 		@foreach ($posts as $post)
 			@include ('posts.post')
 		@endforeach
-
-		<nav class="blog-pagination">
-			{{ $posts->links() }}
-		</nav>
 	</div>
 @endsection

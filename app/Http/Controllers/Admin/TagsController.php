@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Tag;
+use App\Repositories\Tags;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class TagsController extends Controller
 {
-	public function index(Tag $tags)
+	public function index(Tags $tags)
 	{
 		$tags = $tags->all();
 

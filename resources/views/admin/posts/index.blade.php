@@ -8,6 +8,7 @@
 				<tr>
 					<th>Id</th>
 					<th>Title</th>
+					<th>Image</th>
 					<th>Body</th>
 					<th>Published</th>
 					<th>Operations</th>
@@ -36,5 +37,9 @@
 				@endforeach
 			</tbody>
 		</table>
+
+		<nav class="blog-pagination">
+			{{ $posts->links() }}
+		</nav>
 	</div>
 @endsection

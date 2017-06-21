@@ -4,8 +4,6 @@ namespace App\Repositories;
 
 use App\Post;
 use App\Redis;
-use Illuminate\Pagination\Paginator;
-use Illuminate\Pagination\LengthAwarePaginator;
 
 class Posts
 {
@@ -20,6 +18,6 @@ class Posts
 	{
 		return Post::latest()
 			->filter(request(['month', 'year']))
-			->get();
+			->paginate(10);
 	}
 }

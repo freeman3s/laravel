@@ -30,5 +30,9 @@
 				@endforeach
 			</tbody>
 		</table>
+
+		<nav class="blog-pagination">
+			{{ $comments->links() }}
+		</nav>
 	</div>
 @endsection
