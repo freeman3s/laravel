@@ -53,8 +53,8 @@ class Post extends Model
 	{
 		return	DB::table('posts')
 	        ->join('comments', 'posts.id', '=', 'comments.post_id')
-	        ->select('posts.id as id', 'posts.title as title', DB::raw('count(comments.id) as comments'))
-	        ->groupBy('id', 'title')
+	        ->select('posts.id as id', 'posts.slug as slug', 'posts.title as title', DB::raw('count(comments.id) as comments'))
+	        ->groupBy('id', 'title', 'slug')
 	        ->orderByRaw('comments desc')
 	        ->limit(10)
 	        ->get();

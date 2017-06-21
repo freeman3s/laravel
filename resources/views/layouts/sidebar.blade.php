@@ -4,7 +4,7 @@
 		<ol class="list-unstyled">
 			@foreach ($most_commented as $stats)
 				<li>
-					<a href="/posts/{{ $stats->id }}">{{ str_limit($stats->title, 15) . ' - ' . $stats->comments }} comments</a>
+					<a href="/posts/{{ $stats->slug }}">{{ str_limit($stats->title, 15) . ' - ' . $stats->comments }} comments</a>
 				</li>
 			@endforeach
 		</ol>
