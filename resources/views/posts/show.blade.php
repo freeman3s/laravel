@@ -21,6 +21,11 @@
 		<img src="{{ asset('images/' . $post->image) }}" height="400" width="700" alt="image" />
 
 		{{ $post->body }}
+	
+		<hr>
+
+		<h5>Category: {{ $post->category->name }}</h5>
+		
 		<hr>
 
 		<div class="comments">

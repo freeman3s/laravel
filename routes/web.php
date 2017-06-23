@@ -13,6 +13,7 @@ Route::post('/posts', 'PostsController@store');
 Route::get('/posts/{post}', 'PostsController@show');
 
 Route::get('/posts/tags/{tag}', 'TagsController@index');
+Route::get('/posts/categories/{category}', 'CategoriesController@index');
 
 Route::post('/posts/{post}/comments', 'CommentsController@store');
 
@@ -118,5 +119,27 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
 	Route::get('/tags/{tag}/delete', [
 		'as'   => 'admin-tags-delete',
         'uses' => 'Admin\TagsController@delete',
+	]);
+
+	// CRUD for Categories.
+	Route::get('/categories', [
+		'as'   => 'admin-categories',
+        'uses' => 'Admin\CategoriesController@index',
+	]);
+    Route::post('/categories', [
+		'as'   => 'admin-categories-store',
+        'uses' => 'Admin\CategoriesController@store',
+	]);
+	Route::get('/categories/{category}/edit', [
+		'as'   => 'admin-categories-edit',
+        'uses' => 'Admin\CategoriesController@edit',
+	]);
+	Route::post('/categories/{category}/update', [
+		'as'   => 'admin-categories-update',
+        'uses' => 'Admin\CategoriesController@update',
+	]);
+	Route::get('/categories/{category}/destroy', [
+		'as'   => 'admin-categories-destroy',
+        'uses' => 'Admin\CategoriesController@destroy',
 	]);
 });

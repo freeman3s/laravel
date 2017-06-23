@@ -14,6 +14,7 @@
 						<a class="dropdown-item" href="/admin/posts">Posts</a>
 						<a class="dropdown-item" href="/admin/comments">Comments</a>
 						<a class="dropdown-item" href="/admin/tags">Tags</a>
+						<a class="dropdown-item" href="/admin/categories">Categories</a>
 					@else
 						<a class="dropdown-item" href="/posts/create">Add Post</a>
 					@endif

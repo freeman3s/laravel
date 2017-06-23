@@ -22,9 +22,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
-    	'role_id' => function () {
-        	return factory(App\Role::class)->create()->id;
-        },
+    	'role_id' => 0,
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
@@ -39,7 +37,10 @@ $factory->define(App\Post::class, function (Faker\Generator $faker) {
         },
         'title' => $faker->sentence,
         'slug' => $faker->sentence,
-        'body' => $faker->paragraph
+        'body' => $faker->paragraph,
+        'category_id' => function () {
+        	return factory(App\Category::class)->create()->id;
+        },
     ];
 });
 
@@ -52,5 +53,17 @@ $factory->define(App\Comment::class, function (Faker\Generator $faker) {
         	return factory(App\Post::class)->create()->id;
         },
         'body' => $faker->paragraph
+    ];
+});
+
+$factory->define(App\Tag::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->word
+    ];
+});
+
+$factory->define(App\Category::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->word
     ];
 });
