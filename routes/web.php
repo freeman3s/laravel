@@ -9,7 +9,7 @@ Route::get('/tasks/{task}', 'TasksController@show');
 
 Route::get('/', 'PostsController@index')->name('home');
 Route::get('/posts/create', 'PostsController@create');
-Route::post('/posts', 'PostsController@store');
+Route::post('/posts', 'PostsController@store')->name('posts');
 Route::get('/posts/{post}', 'PostsController@show');
 
 Route::get('/posts/tags/{tag}', 'TagsController@index');
@@ -57,7 +57,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
 
 	// CRUD for Posts.
 	Route::get('/posts', [
-		'as'   => 'admin-posts',
+		'as'   => 'admin.posts',
         'uses' => 'Admin\PostsController@index',
 	]);
 	Route::get('/posts/create', [

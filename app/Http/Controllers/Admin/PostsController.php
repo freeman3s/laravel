@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Post;
 use App\Tag;
+use App\Category;
 use App\Repositories\Posts;
 use App\Http\Requests\PostUpdateForm;
 use Illuminate\Http\Request;
@@ -20,8 +21,9 @@ class PostsController extends Controller
 
 	public function edit(Post $post)
 	{
-		$tags = Tag::all();
-		return view('admin.posts.edit', compact('post', 'tags'));
+		$tags = Tag::pluck('name', 'id');
+		$categories = Category::pluck('name', 'id');
+		return view('admin.posts.edit', compact('post', 'tags', 'categories'));
 	}
 
 	public function store(Post $post, PostUpdateForm $form)

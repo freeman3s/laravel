@@ -8,46 +8,37 @@
 	<div class="col-sm-8 blog-main">
 		<h1>Update Post</h1>
 		<hr>
-		<form method="POST" action="/admin/posts/{{ $post->slug }}/store" enctype="multipart/form-data">
-			{{ csrf_field() }}
-
+		{!! Form::model($post, ['action' => ['Admin\PostsController@store', $post->slug], 'files' => true]) !!}
 			<div class="form-group">
-				<label for="title">Title</label>
-				<input type="text" class="form-control" id="title" name="title" value="{{ $post->title }}" required>
+				{!! Form::label('title', 'Title:') !!}
+				{!! Form::text('title', null, ['class' => 'form-control']) !!}
 			</div>
-
-			<img src="{{ asset('images/' . $post->image) }}" height="400" width="700" alt="image" />
-
 			<div class="form-group">
-				<label for="image">New Image</label>
-				<input type="file" name="image">
+				{!! Form::label('slug', 'Slug:') !!}
+				{!! Form::text('slug', null, ['class' => 'form-control']) !!}
 			</div>
-
 			<div class="form-group">
-				<label for="slug">Slug</label>
-				<input type="text" class="form-control" id="title" name="slug" value="{{ $post->slug }}" required>
+				{!! Form::label('body', 'Body:') !!}
+				{!! Form::text('body', null, ['class' => 'form-control']) !!}
 			</div>
-
 			<div class="form-group">
-				<label for="body">Body</label>
-				<textarea id="body" name="body" class="form-control" required>{{ $post->body }}</textarea>
+				{!! Form::label('image', 'Image:') !!}
+				{!! Form::file('image', null, ['class' => 'form-control']) !!}
 			</div>
-
 			<div class="form-group">
-				<label for="tags">Tags</label>
-				<select class="form-control select2-multi" multiple="multiple" name="tags[]">
-					@foreach ($tags as $tag)
-						<option value="{{ $tag->id }}">{{ $tag->name }}</option>
-					@endforeach
-				</select>
+				{!! Form::label('tags', 'Tags:') !!}
+				{!! Form::select('tags', $tags, null, ['class' => 'form-control select2-multi', 'multiple'=>'multiple']) !!}
 			</div>
-
 			<div class="form-group">
-				<button type="submit" class="btn btn-primary">Update</button>
+				{!! Form::label('category_id', 'Category:') !!}
+				{!! Form::select('category_id', $categories, null, ['class' => 'form-control']) !!}
 			</div>
+			<div class="form-group">
+				{!! Form::submit('Update Post', ['class' => 'btn btn-primary form-control']) !!}
+			</div>
+		{!! Form::close() !!}
 
-			@include ('layouts.errors')
-		</form>
+		@include ('layouts.errors')
 	</div>
 @endsection
 @section ('scripts')

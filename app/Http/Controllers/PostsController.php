@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\Tag;
+use App\Category;
 use Illuminate\Http\Request;
 use App\Repositories\Posts;
 
@@ -28,8 +29,9 @@ class PostsController extends Controller
 
 	public function create()
 	{
-		$tags = Tag::all();
-		return view('posts.create', compact('tags'));
+		$tags = Tag::pluck('name', 'id');
+		$categories = Category::pluck('name', 'id');
+		return view('posts.create', compact('tags', 'categories'));
 	}
 
 	public function store()
@@ -37,7 +39,9 @@ class PostsController extends Controller
 		$this->validate(request(), [
 			'title' => 'required',
 			'slug' => 'required',
-			'body' => 'required'
+			'body' => 'required',
+			'tags' => 'required',
+			'category' => 'required'
 		]);
 
 		if (request()->hasFile('image')) {
@@ -54,8 +58,11 @@ class PostsController extends Controller
 			'slug' => request('slug'),
 			'body' => request('body')
 		]);
-
+		
 		$post->tags()->sync(request('tags'), false);
+		$category = Category::find(request('category'));
+		$post->category()->associate($category);
+		$post->save();
 
 		session()->flash('message', 'Your post has now been published.');
 

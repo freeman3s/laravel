@@ -8,44 +8,37 @@
 	<div class="col-sm-8 blog-main">
 		<h1>Publish a Post</h1>
 		<hr>
-		<form method="POST" action="/posts" enctype="multipart/form-data">
-			{{ csrf_field() }}
-
+		{!! Form::open(['url' => route('posts'), 'files' => true]) !!}
 			<div class="form-group">
-				<label for="title">Title</label>
-				<input type="text" class="form-control" id="title" name="title" required>
+				{!! Form::label('title', 'Title:') !!}
+				{!! Form::text('title', null, ['class' => 'form-control']) !!}
 			</div>
-
 			<div class="form-group">
-				<label for="slug">Slug</label>
-				<input type="text" class="form-control" id="slug" name="slug" required>
+				{!! Form::label('slug', 'Slug:') !!}
+				{!! Form::text('slug', null, ['class' => 'form-control']) !!}
 			</div>
-
 			<div class="form-group">
-				<label for="body">Body</label>
-				<textarea id="body" name="body" class="form-control" required></textarea>
+				{!! Form::label('body', 'Body:') !!}
+				{!! Form::text('body', null, ['class' => 'form-control']) !!}
 			</div>
-
 			<div class="form-group">
-				<label for="image">Image</label>
-				<input type="file" name="image">
+				{!! Form::label('image', 'Image:') !!}
+				{!! Form::file('image', null, ['class' => 'form-control']) !!}
 			</div>
-
 			<div class="form-group">
-				<label for="tags">Tags</label>
-				<select class="form-control select2-multi" multiple="multiple" name="tags[]">
-					@foreach ($tags as $tag)
-						<option value="{{ $tag->id }}">{{ $tag->name }}</option>
-					@endforeach
-				</select>
+				{!! Form::label('tags', 'Tags:') !!}
+				{!! Form::select('tags', $tags, null, ['class' => 'form-control select2-multi', 'multiple'=>'multiple']) !!}
 			</div>
-
 			<div class="form-group">
-				<button type="submit" class="btn btn-primary">Publish</button>
+				{!! Form::label('category', 'Category:') !!}
+				{!! Form::select('category', $categories, null, ['class' => 'form-control']) !!}
 			</div>
+			<div class="form-group">
+				{!! Form::submit('Create New Post', ['class' => 'btn btn-primary form-control']) !!}
+			</div>
+		{!! Form::close() !!}
 
-			@include ('layouts.errors')
-		</form>
+		@include ('layouts.errors')
 	</div>
 @endsection
 @section ('scripts')

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Post;
+use App\Category;
 use Image;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Foundation\Http\FormRequest;
@@ -29,7 +30,9 @@ class PostUpdateForm extends FormRequest
         return [
             'title' => 'required',
             'slug' => 'required',
-			'body' => 'required'
+			'body' => 'required',
+			'tags' => 'required',
+			'category_id' => 'required'
         ];
     }
 
@@ -48,7 +51,11 @@ class PostUpdateForm extends FormRequest
 
 		$post->slug = request('slug');
 		$post->body = request('body');
-		$post->save();
 		$post->tags()->sync(request('tags'), true);
+
+		$category = Category::find(request('category_id'));
+		$post->category()->associate($category);
+		
+		$post->save();
     }
 }
