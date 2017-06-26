@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
@@ -17,4 +18,9 @@ class Tag extends Model
 	{
 		return 'name';
 	}
+
+	// public function setCreatedAtAttribute($date)
+	// {
+	// 	$this->attributes['created_at'] = Carbon::createFromFormat('Y-m-d', $date);
+	// }
 }

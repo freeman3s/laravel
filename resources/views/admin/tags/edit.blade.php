@@ -4,19 +4,12 @@
 	<div class="col-sm-8 blog-main">
 		<h1>Edit Tag</h1>
 		<hr>
-		<form method="POST" action="/admin/tags/{{ $tag->name }}/update">
-			{{ csrf_field() }}
-
+		{!! Form::model($tag, ['action' => ['Admin\TagsController@update', $tag->name]]) !!}
+			@include ('admin.tags._form')
 			<div class="form-group">
-				<label for="title">Name</label>
-				<input type="text" class="form-control" id="name" name="name" value="{{ $tag->name }}" required>
+				{!! Form::submit('Update Tag', ['class' => 'btn btn-primary form-control']) !!}
 			</div>
-
-			<div class="form-group">
-				<button type="submit" class="btn btn-primary">Update</button>
-			</div>
-
-			@include ('layouts.errors')
-		</form>
+		{!! Form::close() !!}
+		@include ('layouts.errors')
 	</div>
 @endsection

@@ -109,11 +109,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
         'uses' => 'Admin\TagsController@edit',
 	]);
 	Route::post('/tags/{tag}/update', [
-		'as'   => 'admin-tags-update',
+		'as'   => 'admin.tags.update',
         'uses' => 'Admin\TagsController@update',
 	]);
 	Route::post('/tags', [
-		'as'   => 'admin-tags-store',
+		'as'   => 'admin.tags.store',
         'uses' => 'Admin\TagsController@store',
 	]);
 	Route::get('/tags/{tag}/delete', [

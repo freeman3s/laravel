@@ -43,6 +43,7 @@ class TagsController extends Controller
 
 	public function update(Tag $tag)
 	{
+		// dd($tag);
 		$this->validate(request(), [
 			'name' => 'required|unique:tags'
 		]);
