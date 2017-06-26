@@ -4,19 +4,12 @@
 	<div class="col-sm-8 blog-main">
 		<h1>Edit Category</h1>
 		<hr>
-		<form method="POST" action="/admin/categories/{{ $category->id }}/update">
-			{{ csrf_field() }}
-
+		{!! Form::model($category, ['action' => ['Admin\CategoriesController@update', $category->id]]) !!}
+			@include ('admin.categories._form')
 			<div class="form-group">
-				<label for="title">Name</label>
-				<input type="text" class="form-control" id="name" name="name" value="{{ $category->name }}" required>
+				{!! Form::submit('Update Category', ['class' => 'btn btn-primary form-control']) !!}
 			</div>
-
-			<div class="form-group">
-				<button type="submit" class="btn btn-primary">Update</button>
-			</div>
-
-			@include ('layouts.errors')
-		</form>
+		{!! Form::close() !!}
+		@include ('layouts.errors')
 	</div>
 @endsection

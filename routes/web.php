@@ -127,7 +127,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
         'uses' => 'Admin\CategoriesController@index',
 	]);
     Route::post('/categories', [
-		'as'   => 'admin-categories-store',
+		'as'   => 'admin.categories.store',
         'uses' => 'Admin\CategoriesController@store',
 	]);
 	Route::get('/categories/{category}/edit', [

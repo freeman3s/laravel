@@ -36,20 +36,13 @@
 
 	<div class="col-md-4">
 		<div class="well">
-			<form method="POST" action="/admin/categories">
-				{{ csrf_field() }}
-
+			{!! Form::open(['url' => route('admin.categories.store')]) !!}
+				@include ('admin.categories._form')
 				<div class="form-group">
-					<label for="title">New Category</label>
-					<input type="text" class="form-control" id="name" name="name" required>
+					{!! Form::submit('Create New Category', ['class' => 'btn btn-primary form-control']) !!}
 				</div>
-
-				<div class="form-group">
-					<button type="submit" class="btn btn-primary btn-block">Create New Category</button>
-				</div>
-
-				@include ('layouts.errors')
-			</form>
+			{!! Form::close() !!}
+			@include ('layouts.errors')
 		</div>
 	</div>
 @endsection
