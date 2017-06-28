@@ -1,6 +1,17 @@
 <?php
 // dd(resolve('App\Billing\Stripe'));
 
+Route::get('/welcome', function () {
+	return view('welcome');
+});
+
+Route::get('skills', function () {
+	return ['Laravel', 'Vue', 'PHP', 'JavaScript', 'Tooling'];
+});
+
+Route::get('/projects/create', 'ProjectsController@create');
+Route::post('/projects', 'ProjectsController@store');
+
 Route::get('/about', function () {
 	return view('about');
 });

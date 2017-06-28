@@ -22,7 +22,8 @@
 				{!! Form::text('body', null, ['class' => 'form-control']) !!}
 			</div>
 			<div class="form-group">
-				{!! Form::label('image', 'Image:') !!}
+				{!! Html::image('images/' . $post->image ) !!}
+				{!! Form::label('image', 'New Image:') !!}
 				{!! Form::file('image', null, ['class' => 'form-control']) !!}
 			</div>
 			<div class="form-group">
